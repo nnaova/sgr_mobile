@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SGR_Mobile.Vues.DetailMenu">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Label Text="Detail du menu" FontSize="25" HorizontalOptions="CenterAndExpand"/>
+            <Label x:Name="lblnom_menu" FontSize="20" TextColor="White" HorizontalOptions="CenterAndExpand" Margin="0,20,0,0"/>
+            <BoxView Color="LightGray" HeightRequest="2" HorizontalOptions="FillAndExpand" Margin="0,10,0,20" />
+            <Label x:Name="lblPU" FontSize="16" TextColor="Gray" HorizontalOptions="CenterAndExpand"/>
+            <Label x:Name="lbldescription" FontSize="16" TextColor="Gray" HorizontalOptions="CenterAndExpand"/>
+            <Button Text="Ajouter un plat" Clicked="OnAddClicked" />
+
+            <ListView Grid.Row="0" x:Name="lstMCP" HasUnevenRows="true" IsPullToRefreshEnabled="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2.75*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <!-- Colonne pour les boutons Modifier et Supprimer -->
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Text="{Binding nom_plat}" FontSize="14" HorizontalOptions="Center" />
+                                <Label Grid.Column="1" Text="{Binding type_plat}" FontSize="14" HorizontalOptions="Center" />
+                                <Label Grid.Column="2" Text="{Binding PU_carte}" FontSize="14" HorizontalOptions="Center" />
+                                <Button Grid.Column="3" Text="Del" Clicked="OnDeleteClicked" CommandParameter="{Binding id_plat}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Down" Command="{Binding RefreshCommand}" />
+                </ListView.GestureRecognizers>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

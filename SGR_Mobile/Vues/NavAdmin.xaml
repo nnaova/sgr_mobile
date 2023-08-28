@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SGR_Mobile.Vues.NavAdmin"
+             xmlns:local="clr-namespace:SGR_Mobile.Vues"
+            NavigationPage.HasBackButton="False"
+            BarBackgroundColor="#747474"
+            SelectedTabColor="#3C3744"
+            UnselectedTabColor="White"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            Title="SGR_Mobile">
+
+    <!-- Redirection menu -->
+    <local:ajoutPlat Title="ajout plats"/>
+    <local:AccueilAdmin Title="Accueil" x:Name="acceuilAdminPage"/>
+    <local:AccueilMenu Title="Menu"/>
+
+</TabbedPage>

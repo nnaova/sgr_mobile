@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SGR_Mobile.Vues.AccueilMenu">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackLayout >
+                <Label Text="Bienvenue dans la partie admin !"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center"
+                       FontSize="Large"
+                       Margin="0,0,0,10"/>
+                <Button Text="Créer un menu" Clicked="OnCreateMenuClicked" HorizontalOptions="Center" Margin="0,0,0,30" />
+                <Grid x:Name="gridPlat">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <!-- Colonne pour les boutons Modifier et Supprimer -->
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="Nom Menu" FontSize="16" HorizontalOptions="Center" />
+                    <Label Grid.Row="0" Grid.Column="1" Text="Prix" FontSize="16" HorizontalOptions="Center" />
+                    <Label Grid.Row="0" Grid.Column="2" Text="Description" FontSize="16" HorizontalOptions="Center" />
+                    <Label Grid.Row="0" Grid.Column="3" Text="" HorizontalOptions="Center"/>
+                </Grid>
+
+                <ListView Grid.Row="0" x:Name="lstMenu" HasUnevenRows="true" ItemSelected="OnMenuSelected" IsPullToRefreshEnabled="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <!-- Colonne pour les boutons Modifier et Supprimer -->
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Text="{Binding nom_menu}" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label Grid.Column="1" Text="{Binding PU}" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label Grid.Column="2" Text="{Binding description}" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Button Grid.Column="3" Text="Supp" Clicked="OnDeleteMenusClicked" HorizontalOptions="Center" CommandParameter="{Binding .}" HeightRequest="45" VerticalOptions="Center" Margin="0,5"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.GestureRecognizers>
+                        <SwipeGestureRecognizer Direction="Down" Command="{Binding RefreshCommand}" />
+                    </ListView.GestureRecognizers>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

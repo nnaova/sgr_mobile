@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SGR_Mobile.Vues.ajoutPlat">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="formualaire ajout"
+                   FontSize="20"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+
+            <Entry x:Name="nomPlatEntry" Placeholder="nom du plat"/>
+            <Picker x:Name="typePlatPicker" Title="type de plat">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>mise en bouche</x:String>
+                        <x:String>entrée</x:String>
+                        <x:String>plat</x:String>
+                        <x:String>dessert</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Entry x:Name="prixUnitaire" Placeholder="prix unitaire"/>
+
+            <Button x:Name="validerButton"
+                    Text="valider"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
+                    Clicked="validerAddPlat"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

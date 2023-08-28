@@ -1,0 +1,68 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SGR_Mobile.Vues"
+             x:Class="SGR_Mobile.Vues.AccueilAdmin">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackLayout >
+                <Label Text="Bienvenue dans la partie admin !"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center"
+                       FontSize="Large"
+                       Margin="0,0,0,30"/>
+                <Grid x:Name="gridPlat">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3.75*" />
+                        <ColumnDefinition Width="1.25*" />
+                        <ColumnDefinition Width="1.25*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <!-- Colonne pour les boutons Modifier et Supprimer -->
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="Nom Plat" FontSize="14" HorizontalOptions="Center" />
+                    <Label Grid.Row="0" Grid.Column="1" Text="Type" FontSize="14" HorizontalOptions="Center" />
+                    <Label Grid.Row="0" Grid.Column="2" Text="Prix" FontSize="14" HorizontalOptions="Center" />
+                </Grid>
+
+                <ListView Grid.Row="0" x:Name="lstPlat" HasUnevenRows="true" IsPullToRefreshEnabled="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="1.5*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <!-- Colonne pour les boutons Modifier et Supprimer -->
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Text="{Binding nom_plat}" FontSize="14" HorizontalOptions="Center" />
+                                    <Label Grid.Column="1" Text="{Binding type_plat}" FontSize="14" HorizontalOptions="Center" />
+                                    <Label Grid.Column="2" Text="{Binding PU_carte}" FontSize="14" HorizontalOptions="Center" />
+
+                                    <Button Grid.Column="4" Text="M" FontSize="14" HorizontalOptions="Center" WidthRequest="50" Clicked="ModifierPlat_Clicked" CommandParameter="{Binding .}"/>
+                                    <Button Grid.Column="5" Text="S" FontSize="14" HorizontalOptions="Center" WidthRequest="50" Clicked="SupprimerPlat_Clicked" CommandParameter="{Binding .}"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.GestureRecognizers>
+                        <SwipeGestureRecognizer Direction="Down" Command="{Binding RefreshCommand}" />
+                    </ListView.GestureRecognizers>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

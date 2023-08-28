@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SGR_Mobile.Vues.MainPage"
+             BackgroundColor="White">
+
+    <StackLayout Padding="40" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+
+        <Label Text="Login"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+        <Entry Placeholder="Nom d'utilisateur" x:Name="txtUser"/>
+        <Entry Placeholder="Mot de passe" x:Name="txtMdp" IsPassword="True"/>
+        <Button Text="Connexion" x:Name="btnLogin" Clicked="Button_Clicked"/>
+    </StackLayout>
+
+</ContentPage>
